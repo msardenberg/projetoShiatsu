@@ -7,9 +7,11 @@
                     http://www.springframework.org/schema/security/spring-security.xsd">
 
     <http use-expressions="true">
-        <intercept-url pattern="/" access="isAuthenticated()" />
-        <form-login />
-        <logout />
+    	<intercept-url pattern="/" access="isAuthenticated()" />
+        <intercept-url pattern="/home" access="isAuthenticated()" />
+      
+        <form-login login-page="/index" />
+		<logout/>
     </http>
 
     <authentication-manager>
