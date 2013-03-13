@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,6 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	</head>
 	<body>
+		<br>
 		<div class="navbar navbar-inverse fixed-top">
 			<div class="navbar-inner">
 				<div class="span2">
@@ -24,7 +27,7 @@
 							<input type="text" class="input-email" placeholder="Email" name='j_username'>
 							<input type="password" class="input-medium" placeholder="Password" name='j_password'>
 							<label>
-								<button type="submit" class="btn btn-small">Sign in</button>
+								<button type="submit" class="btn btn-small">Entrar</button>
 							</label>
 						</div> 	
 					</form>
@@ -35,8 +38,11 @@
 		 <div class="container well">
 			    <div class="hero-unit">
     				<h1>Cadastro</h1>
+    				<c:forEach items="${mensagens}" var="mensagem"> 
+						<p><c:out value="${mensagem}"	/></p>
+					</c:forEach>	
     				<div class="span5">
-    				    <form class="form-horizontal" action="cadastro" method="post">
+    				    <form class="form-horizontal" action="cadastroUsuario" method="post">
     						<p>Email</p>
     						<input type="text" class="input-email" placeholder="Email" name=email id=email>
      						<p>Password</p>
@@ -46,6 +52,5 @@
     				</div>
     			</div>
 		</div>
-
 	</body>
 </html>

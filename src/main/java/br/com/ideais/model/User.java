@@ -1,39 +1,43 @@
 package br.com.ideais.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name="USERR")
-@SequenceGenerator(name="SEQUENCIA", 
-		           sequenceName="USER_SEQ",
-		           allocationSize=1)
-public class User {
+public class User implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQUENCIA")
-	private Long id;
-	@Column(name="EMAIL")
+	@Column(name="EMAIL",nullable=false, length=100)
 	private String email;
-	@Column(name="PASSWORD")
+	
+	@Column(name="PASSWORD",nullable=false, length=64)
 	private String password;
 	
+	@Column(name="ENABLE")
+	private boolean enable = true;
+	
+	@Column(name="IMAGE")
+	private String image;
+	
+	@Column(name="AUTHORITY")
+	private String authority = "ROLE_USER";
+	
+//	@OneToMany(targetEntity=Session.class, mappedBy="session_id", fetch=FetchType.EAGER)
+//	@Column(name="SESSION")
+//	private List<Session> session;
+	
 	public User(){
-		
+	
 	}
 	
-	
-// ------- GETTERS ---------
-	
-	public Long getId(){
-		return this.id;
-	}
 	
 	public String getEmail() {
 		return email;
@@ -43,7 +47,17 @@ public class User {
 		return password;
 	}
 
-// ------- SETTERS ---------
+	public boolean isEnable() {
+		return enable;
+	}
+
+	public String getImg() {
+		return image;
+	}
+
+	public String getAuthority() {
+		return authority;
+	}
 	
 	public void setPassword(String password) {
 		this.password = password;
@@ -53,8 +67,26 @@ public class User {
 		this.email = email;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
+	public void setEnable(boolean enable) {
+		this.enable = enable;
 	}
+
+	public void setImg(String image) {
+		this.image = image;
+	}
+
+	public void setAuthority(String authority) {
+		this.authority = authority;
+		}
+
+
+//	public List<Session> getSession() {
+//		return session;
+//	}
+//
+//
+//	public void setSession(List<Session> session) {
+//		this.session = session;
+//	}
 
 }

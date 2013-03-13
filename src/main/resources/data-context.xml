@@ -3,8 +3,8 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
 "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-<!-- Hibernate session factory -->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+    <bean id="dataSource" name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <constructor-arg index="0">
             <value>oracle.jdbc.driver.OracleDriver</value>
         </constructor-arg>

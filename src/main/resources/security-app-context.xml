@@ -6,19 +6,40 @@
                     http://www.springframework.org/schema/security 
                     http://www.springframework.org/schema/security/spring-security.xsd">
 
+
     <http use-expressions="true">
     	<intercept-url pattern="/" access="isAuthenticated()" />
-        <intercept-url pattern="/home" access="isAuthenticated()" />
+        <intercept-url pattern="/home" access="ROLE_USER" />
       
         <form-login login-page="/index" />
 		<logout/>
     </http>
-
+	
     <authentication-manager>
         <authentication-provider>
-            <user-service>
-                <user name="adm" password="adm" authorities="supervisor, teller, user" />
-            </user-service>
+            <jdbc-user-service data-source-ref="dataSource"
+     			 authorities-by-username-query="SELECT username, authority FROM Userr WHERE username = ?"
+     			 users-by-username-query="SELECT username, password, enabled FROM Userr WHERE username = ?"/>
+     		<user-service>
+		        <user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN" />
+      		</user-service>	 
         </authentication-provider>
     </authentication-manager>
+    
+    
+    
+    <beans:bean id="dataSource" name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <beans:constructor-arg index="0">
+            <beans:value>oracle.jdbc.driver.OracleDriver</beans:value>
+        </beans:constructor-arg>
+        <beans:constructor-arg index="1">
+            <beans:value>jdbc:oracle:thin:@localhost:1521:xe</beans:value>
+        </beans:constructor-arg>
+        <beans:constructor-arg index="2">
+            <beans:value>SHIATSU</beans:value>
+        </beans:constructor-arg>
+        <beans:constructor-arg index="3">
+            <beans:value>SHIATSU</beans:value>
+        </beans:constructor-arg>
+    </beans:bean>
 </beans:beans>   

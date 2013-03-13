@@ -20,14 +20,14 @@ public class LoginController {
 	public String loginerror(ModelMap model) {
  
 		model.addAttribute("error", "true");
-		return "login";
+		return "index";
  
 	}
  
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(ModelMap model) {
  
-		return "login";
+		return "index";
  
 	}
  

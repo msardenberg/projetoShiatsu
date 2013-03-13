@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.ideais.dao.UserDAO;
+import br.com.ideais.dao.UserDao;
 import br.com.ideais.model.User;
 
 @Service
@@ -13,23 +13,23 @@ import br.com.ideais.model.User;
 public class UserServiceImpl implements UserService{
 	
 	@Autowired
-	private UserDAO userDao;
+	private UserDao userDao;
+	
 	
 	
 	public List<User> listUsers() {
 		return userDao.findAll();
 	}
-
 	
 	public User find(Long id) {
 		return userDao.findById( id );
 	}
 
-	public void save(User user) {	
+	public void save(User user) {
 		userDao.saveOrUpdate( user );
 	}
 
-	public void setUserDao(UserDAO User) {
+	public void setUserDao(UserDao User) {
 		this.userDao = User;
 	}
 
