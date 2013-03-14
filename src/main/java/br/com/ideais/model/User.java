@@ -1,15 +1,18 @@
 package br.com.ideais.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name="USERR")
+@Table(name="USERS")
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -30,14 +33,12 @@ public class User implements Serializable{
 	@Column(name="AUTHORITY")
 	private String authority = "ROLE_USER";
 	
-//	@OneToMany(targetEntity=Session.class, mappedBy="session_id", fetch=FetchType.EAGER)
-//	@Column(name="SESSION")
-//	private List<Session> session;
+	@OneToMany
+	private List<Session> sessions;
 	
 	public User(){
 	
 	}
-	
 	
 	public String getEmail() {
 		return email;
@@ -77,16 +78,15 @@ public class User implements Serializable{
 
 	public void setAuthority(String authority) {
 		this.authority = authority;
-		}
+	}
 
 
-//	public List<Session> getSession() {
-//		return session;
-//	}
-//
-//
-//	public void setSession(List<Session> session) {
-//		this.session = session;
-//	}
+	public List<Session> getSession() {
+		return sessions;
+	}
+	
+	public void setSession(List<Session> session) {
+		this.sessions = session;
+	}
 
 }

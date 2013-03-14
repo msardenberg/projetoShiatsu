@@ -8,19 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-
 @Entity
-@Table(name="CONFIG")
+@Table(name="CONFIGS")
 @SequenceGenerator(name="SEQUENCIA", 
-		           sequenceName="CONFIG_SEQ",
+		           sequenceName="CONFIGS_SEQ",
 		           allocationSize=1)
 public class Config {
 
-	@Id @Generated(GenerationTime.INSERT) 
+	@Id  
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQUENCIA")
-	@Column(name="SESSION_ID", unique=true) 
+	@Column(name="CONFIGS_ID") 
 	private long id;
 	
 	
